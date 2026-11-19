@@ -1,7 +1,7 @@
 import { CATEGORIES, PRODUCTS, VENMO_USERNAME } from "./products.js";
 
 function venmoLink(product) {
-  const note = encodeURIComponent(`${product.name} - Flowers by Francesca`);
+  const note = encodeURIComponent(`${product.name} - Francesca Makes`);
   return `https://venmo.com/${VENMO_USERNAME}?txn=pay&amount=${product.price}&note=${note}`;
 }
 
@@ -35,7 +35,7 @@ export default function App() {
     <>
       <header className="nav">
         <a href="#top" className="wordmark">
-          Flowers by Francesca
+          Francesca Makes
         </a>
         <nav aria-label="Main">
           {CATEGORIES.map((c) => (
@@ -51,8 +51,8 @@ export default function App() {
       <main id="top">
         <section className="hero">
           <h1>
-            <span className="title-main">Flowers</span>{" "}
-            <span className="title-sub">by Francesca</span>
+            <span className="title-main">Francesca Makes</span>{" "}
+            <span className="title-sub">handmade with love.. and flowers</span>
           </h1>
         </section>
 
@@ -77,13 +77,13 @@ export default function App() {
         <section id="how" className="block narrow">
           <h2>Ordering</h2>
           <p>
-            [ .... ]
+            Choose something you like and tap Buy with Venmo.
           </p>
         </section>
       </main>
 
       <footer className="footer">
-        <p>Flowers by Francesca, {new Date().getFullYear()}</p>
+        <p>Francesca Makes, {new Date().getFullYear()}</p>
       </footer>
     </>
   );
