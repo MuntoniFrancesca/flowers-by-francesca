@@ -16,14 +16,23 @@ export const CATEGORIES = [
   { key: "jewelry", title: "Jewelry", tone: 1 },
 ];
 
+export const ORDER_EMAIL = "YOUR-EMAIL@example.com";
+export const DEPOSIT_PERCENT = 50; // the caparra
+
+export const FABRICS = [
+  { id: "homespun-brown", name: "Homespun Brown", image: "/images/homespun-brown.jpg" },
+  { id: "denim-blue", name: "Denim Blue", image: "/images/denim-blue.jpg" },
+  // add more, with photos in /public/images
+];
+
 export const PRODUCTS = [
   // Sewing
   {
-    id: "floral-tote",
-    name: "Floral tote bag",
+    id: "bag",
+    name: "Bag",
     category: "sewing",
     price: 45,
-    description: "Sewn from flowery cotton, fully lined, with an inside pocket.",
+    description: "Sewn from cotton, fully lined, with inside pockets.",
   },
   {
     id: "scrunchie-set",
