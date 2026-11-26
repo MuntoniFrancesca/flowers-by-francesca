@@ -1,0 +1,481 @@
+/* Custom bag page. Everything here starts with "bag-" so it never clashes
+   with the rest of the site. It reuses your site colors when they exist. */
+
+.bag-page {
+  --b-ink: var(--ink, #2e2230);
+  --b-muted: var(--muted, #7b6e80);
+  --b-line: var(--line, #eadfe4);
+  --b-accent: var(--accent-deep, #a85d78);
+  --b-paper: var(--paper, #fdf9f9);
+  --b-soft: #f6e6ea;
+  --b-radius: 8px; /* change this one number to make every corner rounder or sharper */
+
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 6vw 96px;
+  color: var(--b-ink);
+}
+
+.bag-back {
+  display: inline-block;
+  color: var(--b-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.bag-back:hover {
+  color: var(--b-ink);
+}
+
+.bag-title {
+  margin: 20px 0 48px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--b-line);
+  font-weight: 200;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+}
+
+/* Two columns: your choices on the left, your bag on the right */
+.bag-builder {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 72px;
+  align-items: start;
+}
+
+.bag-form {
+  min-width: 0;
+}
+
+.bag-intro {
+  margin: 0 0 44px;
+  max-width: 60ch;
+  color: var(--b-muted);
+}
+
+/* Steps */
+.bag-step {
+  margin: 0 0 44px;
+  padding: 0 0 44px;
+  border-bottom: 1px solid var(--b-line);
+}
+
+.bag-step h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin: 0 0 22px;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.bag-step-num {
+  min-width: 1.4em;
+  color: var(--b-accent);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+}
+
+/* Hidden radio inputs stay focusable so the browser can still ask for a choice */
+.bag-seg input,
+.bag-tile input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+/* Quilted / one fabric choices */
+.bag-segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--b-line);
+  border-radius: var(--b-radius);
+}
+
+.bag-seg {
+  position: relative;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.bag-seg + .bag-seg {
+  border-left: 1px solid var(--b-line);
+}
+
+.bag-seg:first-child {
+  border-radius: var(--b-radius) 0 0 var(--b-radius);
+}
+
+.bag-seg:last-child {
+  border-radius: 0 var(--b-radius) var(--b-radius) 0;
+}
+
+.bag-seg:hover:not(.picked) {
+  background: var(--b-soft);
+}
+
+.bag-seg.picked {
+  background: var(--b-ink);
+  color: var(--b-paper);
+}
+
+.bag-seg:has(input:focus-visible) {
+  outline: 2px solid var(--b-accent);
+  outline-offset: 3px;
+}
+
+/* Fabric, strap and thread pictures */
+.bag-segmented + .bag-swatch-block {
+  margin-top: 28px;
+}
+
+.bag-swatch-block + .bag-swatch-block {
+  margin-top: 28px;
+}
+
+.bag-sub {
+  margin: 0 0 12px;
+  color: var(--b-muted);
+  font-size: 0.95rem;
+}
+
+.bag-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 22px 16px;
+}
+
+.bag-tile {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  text-align: center;
+}
+
+.bag-tile-img {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--b-soft);
+  border-radius: var(--b-radius);
+  outline: 1px solid var(--b-line);
+  transition: transform 0.18s, outline-color 0.18s;
+}
+
+.bag-tile-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bag-tile:hover .bag-tile-img {
+  transform: translateY(-3px);
+}
+
+.bag-tile.picked .bag-tile-img {
+  outline: 2px solid var(--b-accent);
+  outline-offset: 3px;
+}
+
+/* A small check mark on the picked picture */
+.bag-tile.picked .bag-tile-img::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--b-accent)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E")
+    center / 70% no-repeat;
+}
+
+.bag-tile:has(input:focus-visible) .bag-tile-img {
+  outline: 2px solid var(--b-accent);
+  outline-offset: 3px;
+}
+
+.bag-tile-name {
+  display: block;
+  margin-top: 12px;
+  color: var(--b-muted);
+  font-size: 0.9rem;
+  line-height: 1.3;
+  transition: color 0.15s;
+}
+
+.bag-tile.picked .bag-tile-name {
+  color: var(--b-ink);
+}
+
+/* Your details */
+.bag-field {
+  display: block;
+  margin-bottom: 24px;
+}
+
+.bag-field > span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--b-muted);
+  font-size: 0.9rem;
+}
+
+.bag-field input,
+.bag-field textarea {
+  display: block;
+  width: 100%;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid var(--b-line);
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  transition: border-color 0.15s;
+}
+
+.bag-field textarea {
+  min-height: 110px;
+  padding: 12px;
+  border: 1px solid var(--b-line);
+  border-radius: var(--b-radius);
+  resize: vertical;
+}
+
+.bag-field input:focus,
+.bag-field textarea:focus {
+  outline: none;
+  border-color: var(--b-accent);
+}
+
+.bag-agree {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0 0 28px;
+  color: var(--b-muted);
+  font-size: 0.95rem;
+}
+
+.bag-agree input {
+  margin-top: 6px;
+  accent-color: var(--b-accent);
+}
+
+.bag-submit {
+  padding: 16px 40px;
+  border: 0;
+  background: var(--b-ink);
+  border-radius: var(--b-radius);
+  color: var(--b-paper);
+  font: inherit;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.bag-submit:hover {
+  background: var(--b-accent);
+}
+
+.bag-submit:focus-visible {
+  outline: 2px solid var(--b-accent);
+  outline-offset: 3px;
+}
+
+.bag-next {
+  margin: 32px 0 0;
+  padding: 20px 22px;
+  border-radius: var(--b-radius);
+  background: var(--b-soft);
+}
+
+/* Your bag: the live summary.
+   Very faded red while something is still missing, very faded green once
+   every choice is made. Change these four colors to taste. */
+.bag-summary {
+  --sum-bg: #fcefee;
+  --sum-line: #f0d6d4;
+  position: sticky;
+  top: 24px;
+  padding: 30px;
+  border: 1px solid var(--sum-line);
+  border-radius: calc(var(--b-radius) * 1.5);
+  background: var(--sum-bg);
+  transition: background 0.5s, border-color 0.5s;
+}
+
+.bag-summary.is-complete {
+  --sum-bg: #eef6eb;
+  --sum-line: #d2e4cc;
+}
+
+.bag-sum-title {
+  margin: 0 0 16px;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.bag-progress {
+  height: 2px;
+  background: var(--b-line);
+}
+
+.bag-progress span {
+  display: block;
+  height: 100%;
+  background: var(--b-accent);
+  transition: width 0.3s;
+}
+
+.bag-progress-text {
+  margin: 10px 0 24px;
+  color: var(--b-muted);
+  font-size: 0.85rem;
+}
+
+.bag-sum-list {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bag-sum-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bag-thumb {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+  border: 1px dashed var(--b-line);
+  border-radius: calc(var(--b-radius) * 0.75);
+  background: var(--b-paper);
+}
+
+.bag-sum-row.done .bag-thumb {
+  border-style: solid;
+}
+
+.bag-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* A little stitched pattern for "Quilted" */
+.bag-thumb.is-quilted {
+  background-image:
+    repeating-linear-gradient(45deg, var(--b-line) 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(-45deg, var(--b-line) 0 1px, transparent 1px 8px);
+}
+
+.bag-sum-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.bag-sum-label {
+  color: var(--b-muted);
+  font-size: 0.8rem;
+}
+
+.bag-sum-value {
+  font-size: 0.98rem;
+}
+
+.bag-sum-row:not(.done) .bag-sum-value {
+  color: var(--b-muted);
+  opacity: 0.65;
+}
+
+.bag-sum-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 26px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--b-line);
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.bag-sum-price span {
+  color: var(--b-muted);
+  font-size: 0.85rem;
+}
+
+/* Phones and small tablets: one column, and the summary becomes a slim bar
+   that stays at the top so you can watch your bag fill up as you scroll. */
+@media (max-width: 880px) {
+  .bag-builder {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .bag-summary {
+    order: -1;
+    top: 0;
+    z-index: 5;
+    margin-bottom: 36px;
+    padding: 14px 0 12px;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid var(--sum-line);
+    background: var(--sum-bg);
+  }
+
+  .bag-sum-title,
+  .bag-sum-text,
+  .bag-sum-price {
+    display: none;
+  }
+
+  .bag-progress-text {
+    margin: 8px 0 12px;
+  }
+
+  .bag-sum-list {
+    display: flex;
+    gap: 10px;
+  }
+
+  .bag-thumb {
+    width: 40px;
+    height: 40px;
+  }
+
+  .bag-title {
+    margin-bottom: 32px;
+  }
+
+  .bag-swatches {
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    gap: 18px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bag-page * {
+    transition: none !important;
+  }
+}

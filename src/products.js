@@ -8,6 +8,50 @@
 // Your Venmo username (no @). Buyers get sent to pay this account.
 export const VENMO_USERNAME = "YOUR-VENMO-USERNAME";
 
+export const FABRICS = [
+  {
+    id: "blue-floral-cream",
+    name: "Blue floral on cream",
+    image: "/images/fabrics/Blue_Foral_On_Cream_Cotton_Calico_Fabric.webp",
+  },
+  {
+    id: "dark-blue-floral",
+    name: "Dark blue floral",
+    image: "/images/fabrics/Dark_Blue_Floral_Cotton_Calico_Fabric.webp",
+  },
+  {
+    id: "earth-botanical",
+    name: "Earth botanical",
+    image: "/images/fabrics/Earth_Botanical_Cotton_Calico.webp",
+  },
+  {
+    id: "homespun-brown",
+    name: "Homespun brown",
+    image: "/images/fabrics/Homespun_Brown_Cotton_Fabric.webp",
+  },
+  {
+    id: "red-sage-floral",
+    name: "Red and sage floral",
+    image: "/images/fabrics/Red__Sage_Floral_Cotton_Calico_Fabric.webp",
+  },
+  {
+    id: "wine-tan-check",
+    name: "Wine and tan check",
+    image: "/images/fabrics/Wine__Tan_Basic_Check_Homespun_Cotton_Fabric.webp",
+  },
+];
+
+export const STRAP_COLORS = [
+  { id: "brown", name: "Brown", image: "/images/straps/brown.webp" },
+  { id: "navy", name: "Navy", image: "/images/straps/navy.webp" },
+  { id: "black", name: "Black", image: "/images/straps/black.webp" },
+];
+
+export const THREAD_COLORS = [
+  { id: "cream", name: "Cream", image: "/images/thread/cream.webp" },
+  { id: "black", name: "Black", image: "/images/thread/black.webp" },
+];
+
 // The sections on the page, in the order they appear.
 // tone: 0 = lilac, 1 = sky blue, 2 = butter yellow (colors are in styles.css)
 export const CATEGORIES = [
@@ -18,12 +62,6 @@ export const CATEGORIES = [
 
 export const ORDER_EMAIL = "YOUR-EMAIL@example.com";
 export const DEPOSIT_PERCENT = 50; // the caparra
-
-export const FABRICS = [
-  { id: "homespun-brown", name: "Homespun Brown", image: "/images/homespun-brown.jpg" },
-  { id: "denim-blue", name: "Denim Blue", image: "/images/denim-blue.jpg" },
-  // add more, with photos in /public/images
-];
 
 export const PRODUCTS = [
   // Sewing
