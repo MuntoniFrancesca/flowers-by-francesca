@@ -241,12 +241,12 @@ export default function OrderForm() {
         <ul className="bag-sum-list">
           <SummaryRow label="Quilting" value={form.quilted} quilted={form.quilted === "Quilted"} />
           <SummaryRow
-            label={twoOuter ? "Outer, first" : "Outer"}
+            label={twoOuter ? "Outer, top" : "Outer"}
             value={form.outer}
             image={imageOf(FABRICS, form.outer)}
           />
           {twoOuter && (
-            <SummaryRow label="Outer, second" value={form.outer2} image={imageOf(FABRICS, form.outer2)} />
+            <SummaryRow label="Outer, bottom" value={form.outer2} image={imageOf(FABRICS, form.outer2)} />
           )}
           <SummaryRow label="Lining" value={form.lining} image={imageOf(FABRICS, form.lining)} />
           <SummaryRow label="Strap" value={form.strap} image={imageOf(STRAP_COLORS, form.strap)} />
